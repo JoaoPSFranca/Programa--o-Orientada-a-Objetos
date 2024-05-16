@@ -1,98 +1,18 @@
 package br.edu.ifsp.pep;
 
 import java.time.LocalDate;
+import br.edu.ifsp.pep.controller.ItemAlugadoController;
+import br.edu.ifsp.pep.controller.ItemVendidoController;
 import br.edu.ifsp.pep.models.Aluguel;
 import br.edu.ifsp.pep.models.Cliente;
 import br.edu.ifsp.pep.models.FerramentaAluguel;
 import br.edu.ifsp.pep.models.FerramentaVenda;
 import br.edu.ifsp.pep.models.Funcionario;
-import br.edu.ifsp.pep.models.ItemAlugado;
-import br.edu.ifsp.pep.models.ItemVendido;
 import br.edu.ifsp.pep.models.Venda;
-import java.util.ArrayList;
 
 public class Principal {
-    private static final ArrayList<ItemVendido> itensVendidos = new ArrayList<>();
-    private static final ArrayList<ItemAlugado> itensAlugados = new ArrayList<>();
-    
-    public static void LocacoesCliente(String cpf){
-        for (ItemAlugado ia : itensAlugados) {
-            if(ia.getA().getCliente().getCpf().equals(cpf)){
-                Aluguel a = ia.getA();
-                System.out.println("\nLocacao: ");
-                System.out.println("Data da locacao: " + a.getDataLocacao());
-                System.out.println("Data da devolucao: " + a.getDataDevolucao());
-                System.out.println("Valor da Diaria: " + a.getValorDiaria());
-                System.out.println("Ferramenta: " + a.getFerramentasAluguel().getNome());
-                System.out.println("Funcionario: " + a.getFuncionario().getNome());
-                System.out.println("Cliente: " + a.getCliente().getNome());
-            }
-        }
-    }
-    
-    public static void VendasCliente(String cpf){
-        for (ItemVendido iv : itensVendidos) {
-            if(iv.getV().getCliente().getCpf().equals(cpf)){
-                Venda v = iv.getV();
-                System.out.println("\nVenda: ");
-                System.out.println("Data da venda: " + v.getDataVenda());
-                System.out.println("Ferramenta: " + iv.getFv().getNome());
-                System.out.println("Quantidade: " + iv.getQuantidade());
-                System.out.println("Quantidade de itens vendidos: " + iv.getQuantidade());
-                System.out.println("Cliente: " + v.getCliente().getNome());
-            }
-        }
-    }
-    
-    public static double totalLocacoesCliente(String cpf){
-        double total = 0.0;
-        
-        for (ItemAlugado ia : itensAlugados) {
-            if(ia.getA().getCliente().getCpf().equals(cpf)){
-                Aluguel a = ia.getA();
-                total += a.getValorAluguel();
-            }
-        }
-        
-        return total;
-    }
-    
-    public static double totalVendasCliente(String cpf){
-        double total = 0.0;
-        
-        for (ItemVendido iv : itensVendidos) {
-            if(iv.getV().getCliente().getCpf().equals(cpf)){
-                total += iv.getFv().getValor() * iv.getQuantidade();
-            }
-        }
-        
-        return total;
-    }
-    
-    public static int quantidadeVedndidaFerramenta(int codigo){
-        int total = 0;
-        
-        for (ItemVendido iv : itensVendidos) {
-            if(iv.getFv().getCodigo() == codigo){
-                total += iv.getQuantidade();
-            }
-        }
-        
-        return total;
-    }
-    
-    public static double totalLocacoesFuncionario(String cpf){
-        double total = 0.0;
-        
-        for (ItemAlugado ia : itensAlugados) {
-            if(ia.getA().getFuncionario().getCpf().equals(cpf)){
-                Aluguel a = ia.getA();
-                total += a.getValorAluguel();
-            }
-        }
-        
-        return total;
-    }
+    public static ItemVendidoController ivc = new ItemVendidoController();
+    public static ItemAlugadoController iac = new ItemAlugadoController();
     
     public static void main(String[] args) {
         Cliente c1 = new Cliente("765.840.325-31", "Tereza Costa", "terezacosta@gmail.com.br", "(67) 3728-2967", 2000);
@@ -115,35 +35,35 @@ public class Principal {
         Venda v3 = new Venda(LocalDate.of(2024, 04, 30), c1);
         Venda v4 = new Venda(LocalDate.of(2024, 05, 12), c2);
         
-        itensVendidos.add(new ItemVendido(fv1, v1, 3));
-        itensVendidos.add(new ItemVendido(fv2, v2, 2));
-        itensVendidos.add(new ItemVendido(fv3, v3, 5));
-        itensVendidos.add(new ItemVendido(fv2, v4, 1));
+        ivc.adicionar(fv1, v1, 3);
+        ivc.adicionar(fv2, v2, 2);
+        ivc.adicionar(fv3, v3, 5);
+        ivc.adicionar(fv2, v4, 1);
         
         Aluguel a1 = new Aluguel(LocalDate.now(), LocalDate.now().plusDays(4), f2, c1, fa1); 
         Aluguel a2 = new Aluguel(LocalDate.now(), LocalDate.now().plusDays(3), f1, c2, fa2); 
         Aluguel a3 = new Aluguel(LocalDate.now(), LocalDate.now().plusDays(6), f2, c1, fa3); 
         Aluguel a4 = new Aluguel(LocalDate.now(), LocalDate.now().plusDays(7), f1, c2, fa4); 
         
-        itensAlugados.add(new ItemAlugado(a1, fa1));
-        itensAlugados.add(new ItemAlugado(a2, fa2));
-        itensAlugados.add(new ItemAlugado(a3, fa3));
-        itensAlugados.add(new ItemAlugado(a4, fa4));
+        iac.adicionar(a1, fa1);
+        iac.adicionar(a2, fa2);
+        iac.adicionar(a3, fa3);
+        iac.adicionar(a4, fa4);
         
         //apresentar locacoes e vendas pelo cliente 1
-        LocacoesCliente("765.840.325-31");
-        VendasCliente("765.840.325-31");
+        iac.LocacoesCliente("765.840.325-31");
+        ivc.VendasCliente("765.840.325-31");
         
         //Total gastos pelo cliente 2
-        double total = totalLocacoesCliente("369.416.856-70");
-        total += totalVendasCliente("369.416.856-70");
+        double total = iac.totalLocacoesCliente("369.416.856-70");
+        total += ivc.totalVendasCliente("369.416.856-70");
         System.out.println("\nTotal gasto pelo cliente " + c2.getNome() + ": R$" + total);
         
         //total vendido de uma ferramenta
-        System.out.println("Total de " + fv2.getNome() + " vendidas: " + quantidadeVedndidaFerramenta(fv2.getCodigo()));
+        System.out.println("Total de " + fv2.getNome() + " vendidas: " + ivc.quantidadeVedndidaFerramenta(fv2.getCodigo()));
         
         //total recebido de locações por um funcionário
-        total = totalLocacoesFuncionario(f1.getCpf());
+        total = iac.totalLocacoesFuncionario(f1.getCpf());
         System.out.println("\nTotal ganho pelo funcionario " + f1.getNome() + ": R$" + total);
     }
 }
