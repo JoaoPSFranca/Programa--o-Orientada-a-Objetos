@@ -1,13 +1,13 @@
 package br.edu.ifsp.pep.models;
 
 public class Ferramenta {
-    private int incrementCodigo = 0;
+    private static int incrementCodigo = 0;
     private int codigo;
     private String nome;
 
     public Ferramenta(String nome) {
-        incrementCodigo++;
-        this.codigo = incrementCodigo;
+        ++incrementCodigo;
+        this.codigo = incrementCodigo;  
         this.nome = nome;
     }
     

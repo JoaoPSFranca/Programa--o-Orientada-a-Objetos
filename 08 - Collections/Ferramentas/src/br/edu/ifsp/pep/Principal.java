@@ -101,14 +101,14 @@ public class Principal {
         Funcionario f1 = new Funcionario("Atendente", 2132.00, "971.672.444-65", "Otávio Moreira", "otaviomoreira@hotmail.com.br", "(71) 3995-5555");
         Funcionario f2 = new Funcionario("Sub-Gerente", 2740.00, "772.826.444-38", "Arthur da Paz", "arthurdapaz@hotmail.com.br", "(81) 99824-6667");
         
-        FerramentaAluguel fa1 = new FerramentaAluguel("Machado", 47.99);
-        FerramentaAluguel fa2 = new FerramentaAluguel("Martelo", 26.49);
-        FerramentaAluguel fa3 = new FerramentaAluguel("Parafusadeira", 53.49);
-        FerramentaAluguel fa4 = new FerramentaAluguel("Caixa de Ferramentas", 99.99);
+        FerramentaAluguel fa1 = new FerramentaAluguel("Machado", 10);
+        FerramentaAluguel fa2 = new FerramentaAluguel("Martelo", 5);
+        FerramentaAluguel fa3 = new FerramentaAluguel("Parafusadeira", 15);
+        FerramentaAluguel fa4 = new FerramentaAluguel("Caixa de Ferramentas", 20);
         
-        FerramentaVenda fv1 = new FerramentaVenda("Arco de Serra", 14.99);
-        FerramentaVenda fv2 = new FerramentaVenda("Alicate", 22.49);
-        FerramentaVenda fv3 = new FerramentaVenda("Nivel", 7.99);
+        FerramentaVenda fv1 = new FerramentaVenda("Arco de Serra", 15);
+        FerramentaVenda fv2 = new FerramentaVenda("Alicate", 20);
+        FerramentaVenda fv3 = new FerramentaVenda("Nivel", 10);
         
         Venda v1 = new Venda(LocalDate.of(2024, 03, 27), c1);
         Venda v2 = new Venda(LocalDate.of(2024, 04, 15), c2);

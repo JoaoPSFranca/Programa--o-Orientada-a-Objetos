@@ -2,7 +2,7 @@ package br.edu.ifsp.pep.models;
 
 public class FerramentaAluguel extends Ferramenta {
     private double valorDiaria;
-    private int increment = 0;
+    private static int increment = 0;
     private int numeroPatrimonio;
     
     public FerramentaAluguel(String nome, double valor) {
