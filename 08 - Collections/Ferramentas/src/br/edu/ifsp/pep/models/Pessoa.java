@@ -1,4 +1,4 @@
-package br.edu.ifsp.pep.Modelo;
+package br.edu.ifsp.pep.models;
 
 public abstract class Pessoa {
     private String cpf;

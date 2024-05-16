@@ -1,4 +1,4 @@
-package br.edu.ifsp.pep.Modelo;
+package br.edu.ifsp.pep.models;
 
 public class Cliente extends Pessoa {
     private double limite;

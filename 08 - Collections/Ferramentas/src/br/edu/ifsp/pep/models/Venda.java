@@ -1,25 +1,14 @@
-package br.edu.ifsp.pep.Modelo;
+package br.edu.ifsp.pep.models;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Venda {
     private LocalDate dataVenda;
-    private List<ItemVendido> itens;
     private Cliente cliente;
 
-    public Venda(LocalDate dataVenda, List<ItemVendido> itens, Cliente cliente) {
+    public Venda(LocalDate dataVenda, Cliente cliente) {
         this.dataVenda = dataVenda;
-        this.itens = itens;
         this.cliente = cliente;
-    }
-
-    public List<ItemVendido> getItens() {
-        return itens;
-    }
-
-    public void setItens(List<ItemVendido> itens) {
-        this.itens = itens;
     }
 
     public LocalDate getDataVenda() {

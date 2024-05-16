@@ -1,9 +1,9 @@
-package br.edu.ifsp.pep.Modelo;
+package br.edu.ifsp.pep.models;
 
 public class FerramentaVenda extends Ferramenta {
     private double valor;
 
-    public FerramentaVenda(double valor, String nome) {
+    public FerramentaVenda(String nome, double valor) {
         super(nome);
         this.valor = valor;
     }

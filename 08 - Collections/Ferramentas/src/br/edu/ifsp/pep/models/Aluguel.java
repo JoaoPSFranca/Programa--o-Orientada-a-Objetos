@@ -1,4 +1,4 @@
-package br.edu.ifsp.pep.Modelo;
+package br.edu.ifsp.pep.models;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -12,20 +12,18 @@ public class Aluguel {
     private FerramentaAluguel ferramentasAluguel;
     
     //Ver quantidade de dias alugados
-    //private int diasAlugados;
-    //private Period periodoAluguel;
     //Period period = Period.between(startDate, endDate);
     //int diasMeses = period.getMonths() * 30;
     //int diasAnos = period.getYears() * 365;
     //int dias = period.getDays() + diasMeses + diasAnos;
-
-    public Aluguel(LocalDate dataLocacao, LocalDate dataDevolucao, double valorDiaria, Funcionario funcionario, Cliente cliente, FerramentaAluguel ferramentasAluguel) {
+    
+    public Aluguel(LocalDate dataLocacao, LocalDate dataDevolucao, Funcionario funcionario, Cliente cliente, FerramentaAluguel ferramentasAluguel) {
         this.dataLocacao = dataLocacao;
         this.dataDevolucao = dataDevolucao;
-        this.valorDiaria = valorDiaria;
         this.funcionario = funcionario;
         this.cliente = cliente;
         this.ferramentasAluguel = ferramentasAluguel;
+        this.valorDiaria = ferramentasAluguel.getValorDiaria();
     }
 
     public LocalDate getDataLocacao() {
@@ -75,5 +73,16 @@ public class Aluguel {
     public void setFerramentasAluguel(FerramentaAluguel ferramentasAluguel) {
         this.ferramentasAluguel = ferramentasAluguel;
     }
-   
+    
+    public int getDiasAlugados(){
+        Period period = Period.between(this.dataLocacao, this.dataDevolucao);
+        int diasMeses = period.getMonths() * 30;
+        int diasAnos = period.getYears() * 365;
+        return period.getDays() + diasMeses + diasAnos;
+    }
+    
+    public double getValorAluguel(){
+        int dias = this.getDiasAlugados();
+        return dias * this.valorDiaria;
+    }
 }
